@@ -11,6 +11,11 @@ def salvar_dados_txt():
     print("Dados salvos com sucesso em dados_energia.txt!")
 
 def carry_data_txt():
+    # Limpa as listas antes de carregar os dados
+    consumes.clear()
+    power.clear()
+    time.clear()
+    
     if os.path.exists("dados_energia.txt"):
         with open("dados_energia.txt", "r") as file:
             for line in file:
@@ -21,6 +26,7 @@ def carry_data_txt():
         print("Dados carregados com sucesso de dados_energia.txt!")
     else:
         print("Nenhum dado salvo encontrado.")
+
 
 def program_name():
     print('''
@@ -40,11 +46,14 @@ def show_options():
 
 def end_app():
     salvar_dados_txt()
+    print("Dados salvos no arquivo 'dados_energia.txt'.")
     print("Finalizando o app...")
 
 def back_to_menu():
-    input('\nDigite uma tecla para voltar ao menu principal')
-    main()
+    input('\nPressione qualquer tecla para voltar ao menu principal...')
+    os.system('cls' if os.name == 'nt' else 'clear')
+    show_options()
+    choose_options()
 
 def opcao_invalida():
     print('Opção inválida\n')
@@ -64,7 +73,11 @@ def register_new_consumption():
     timee = float(input('Digite o uso do consumo em horas por dia: '))
     time.append(timee)
     print(f"O consumo {consume_name} foi cadastrado com sucesso!")
+    
+
+    salvar_dados_txt()
     back_to_menu()
+
 
 def amount_energ_bill(consumes, power, time):
     energy_data = {}
@@ -74,7 +87,7 @@ def amount_energ_bill(consumes, power, time):
             'horas_por_dia': time[i]
         }
     
-    fare = 0.73
+    fare = (0.73)
     total_cost = 0
 
     print("\nDetalhes do consumo de energia:")
@@ -89,9 +102,13 @@ def amount_energ_bill(consumes, power, time):
 
 def list_consumptions():
     show_subtitle('Listando os consumos')
-    for consumo in consumes:
-        print(f"- {consumo}")
+    if not consumes:
+        print("Nenhum consumo registrado.")
+    else:
+        for consumo in consumes:
+            print(f"- {consumo}")
     back_to_menu()
+
 
 def choose_options(): 
     try:   
