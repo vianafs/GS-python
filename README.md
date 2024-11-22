@@ -1,5 +1,7 @@
 # Power Wise - Energy Consumption Tracker
-
+<h2>Integrantes</h2>
+<h3>Rafael Menezes Viana RM558287</h3>
+<h3>Kairo da Silva Silvestre de Carvalho RM558288</h3>
 <h2>Detalhes do Projeto</h2>
 <h3>O objetivo deste projeto é criar uma aplicação que permita:</h3>
 <ul>
